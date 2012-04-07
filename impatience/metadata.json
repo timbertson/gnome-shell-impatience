@@ -2,6 +2,6 @@
   "uuid": "impatience@gfxmonk.net",
   "name": "Impatience",
   "description": "Speed up the gnome-shell animation speed",
-  "url": "http://gfxmonk.net/TODO",
+  "url": "http://gfxmonk.net/dist/0install/gnome-shell-impatience.xml",
   "shell-version": [ "3.2", "3.4" ]
 }
