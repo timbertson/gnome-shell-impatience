@@ -47,7 +47,6 @@ Ext.prototype._init = function() {
 	this.original_speed = St.get_slow_down_factor();
 	this.modified_speed = 0.75;
 	this.unbind = noop;
-
 };
 
 Ext.prototype.enable = function() {
@@ -56,8 +55,6 @@ Ext.prototype.enable = function() {
 		return;
 	}
 	this.enabled = true;
-
-
 	var settings = null;
 	try {
 		settings = get_local_gsettings();
