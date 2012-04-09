@@ -50,10 +50,6 @@ Ext.prototype._init = function() {
 };
 
 Ext.prototype.enable = function() {
-	if(this.enabled) {
-		LOG("double-enabled! Ignoring...");
-		return;
-	}
 	this.enabled = true;
 	var settings = null;
 	try {
@@ -75,10 +71,6 @@ Ext.prototype.enable = function() {
 };
 
 Ext.prototype.disable = function() {
-	if(!this.enabled) {
-		LOG("double-disabled! Ignoring...");
-		return;
-	}
 	this.enabled = false;
 	this.unbind();
 	St.set_slow_down_factor(this.original_speed);
@@ -100,6 +92,3 @@ function init() {
 	return new Ext();
 };
 
-function main() {
-	init().enable();
-};
