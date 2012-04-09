@@ -25,9 +25,13 @@ var get_local_gsettings = function() {
 		}
 		return new Gio.Settings({ settings_schema: schemaObj });
 	} catch(e) {
-		LOG("Couldn't get local schema: " + e);
-		// works on 3.2, with $XDG_DATA_DIRS set appropriately
-		return new Gio.Settings({schema: SCHEMA_PATH});
+		if(imports.gi.GLib.getenv('GS_IMPATIENCE_SCHEMAS_INSTALLED') == 'true') {
+			// HACK: call this only when we think it'll work,
+			// otherwise the whole shell dies with no chance of recovery :(
+			LOG("Couldn't get local schema: " + e);
+			return new Gio.Settings({schema: SCHEMA_PATH});
+		}
+		throw e;
 	}
 
 };
@@ -58,6 +62,7 @@ Ext.prototype.enable = function() {
 		LOG("failed to make settings configurable: " + e + "\nThis may mean your gnome-shell version is too old.");
 		this.set_speed();
 	}
+	LOG("enabled");
 	if(settings) {
 		var binding = settings.connect("changed::speed-factor", Lang.bind(this, function() {
 			this.set_speed(settings.get_double('speed-factor'));

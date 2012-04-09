@@ -20,6 +20,7 @@ Speed up builtin gnome-shell animations.
 			</requires>
 		</command>
 		<environment insert="xdg/data" mode="prepend" name="XDG_DATA_DIRS"/>
+		<environment value="true" mode="replace" name="GS_IMPATIENCE_SCHEMAS_INSTALLED"/>
 		<implementation id="sha1new=bb15a209852b1e6ff4b12de009fd15461f5980b4" released="2012-04-08" version="0.1">
 			<manifest-digest sha256="e10c2ab5b8fff75b6f8c1cd730d3495d04263239021ca2e61235fb3d4d906b3a"/>
 			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-impatience/gnome-shell-impatience-0.1.tgz" size="1897"/>
