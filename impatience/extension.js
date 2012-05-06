@@ -2,34 +2,9 @@ const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 const Lang = imports.lang;
 const DEFAULT_SPEED = 0.75;
-
-var get_local_gsettings = function() {
-	LOG("initting schemas");
-	const SCHEMA_PATH = 'org.gnome.shell.extensions.net.gfxmonk.impatience';
-
-	if(Gio.Settings.list_schemas().indexOf(SCHEMA_PATH) != -1) {
-		LOG("Using sytem-installed schema.");
-		return new Gio.Settings({schema: SCHEMA_PATH});
-	}
-
-	LOG("Attempting load of extension-local schema.");
-	const GioSSS = Gio.SettingsSchemaSource;
-	const Extension = imports.misc.extensionUtils.getCurrentExtension();
-	let schemaDir = Extension.dir.get_child('schemas');
-	let schemaSource = GioSSS.new_from_directory(
-		schemaDir.get_path(),
-		GioSSS.get_default(),
-		false);
-	let schemaObj = schemaSource.lookup(SCHEMA_PATH, true);
-	if (!schemaObj) {
-		throw new Error(
-			'Schema ' + schema +
-			' could not be found for extension ' +
-			Extension.metadata.uuid
-		);
-	}
-	return new Gio.Settings({ settings_schema: schemaObj });
-};
+const ExtensionUtils = imports.misc.extensionUtils;
+const Extension = ExtensionUtils.getCurrentExtension();
+const Settings = Extension.imports.settings;
 
 function LOG(m){
 	global.log("[impatience] " + m);
@@ -50,24 +25,16 @@ Ext.prototype._init = function() {
 
 Ext.prototype.enable = function() {
 	this.enabled = true;
-	var settings = null;
-	try {
-		settings = get_local_gsettings();
-	} catch (e) {
-		LOG("failed to make settings configurable: " + e + "\nThis may mean your gnome-shell version is too old.");
-		this.set_speed();
-	}
+	var pref = (new Settings.Prefs()).SPEED;
 	LOG("enabled");
-	if(settings) {
-		var binding = settings.connect("changed::speed-factor", Lang.bind(this, function() {
-			this.set_speed(settings.get_double('speed-factor'));
-		}));
-		this.unbind = function() {
-			settings.disconnect(binding);
-			this.unbind = noop;
-		};
-		this.set_speed(settings.get_double('speed-factor'));
-	}
+	var binding = pref.changed(Lang.bind(this, function() {
+		this.set_speed(pref.get());
+	}));
+	this.unbind = function() {
+		pref.disconnect(binding);
+		this.unbind = noop;
+	};
+	this.set_speed(pref.get());
 };
 
 Ext.prototype.disable = function() {

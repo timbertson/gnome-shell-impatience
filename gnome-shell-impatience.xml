@@ -33,4 +33,21 @@ Speed up builtin gnome-shell animations.
 			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-impatience/gnome-shell-impatience-0.3.tgz" size="1955"/>
 		</implementation>
 	</group>
+	<group>
+		<command name="run">
+			<runner interface="http://gfxmonk.net/dist/0install/zeroinstall-plugin-manager.xml">
+				<arg>http://gfxmonk.net/dist/0install/gnome-shell.xml</arg>
+				<arg>--plugin-command</arg>
+				<arg>run</arg>
+			</runner>
+			<requires interface="http://gfxmonk.net/dist/0install/gnome-shell.xml">
+				<version not-before="3.4"/>
+			</requires>
+		</command>
+		<environment insert="xdg/data" mode="prepend" name="XDG_DATA_DIRS"/>
+		<implementation id="sha1new=78f333fddbc392633cc1856bfdc7334d1428166d" released="2012-05-06" version="0.4">
+			<manifest-digest sha256="851f0c2a3a7a624451ecfa072da568ea052f4e7ceedce42b7a228ff2dbd7cf75"/>
+			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-impatience/gnome-shell-impatience-0.4.tgz" size="2338"/>
+		</implementation>
+	</group>
 </interface>
