@@ -24,7 +24,7 @@ function buildPrefsWidget() {
 			use_markup: true,
 		});
 		let adjustment = new Gtk.Adjustment({
-			lower: 0,
+			lower: 0.05,
 			upper: 2,
 			step_increment: 0.05
 		});
