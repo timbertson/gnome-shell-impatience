@@ -15,7 +15,7 @@ function buildPrefsWidget() {
 
 	(function() {
 		let label = new Gtk.Label({
-			label: "Speed scaling (1 = normal, 0.5 = twice as fast, 0.1 = ten times faster)",
+			label: "Speed scaling (1 = normal, 0.5 = twice as fast, 0.1 = ten times faster)\nWarning: This also affects contdown for Logout and Shutdown dialogs.",
 			use_markup: false,
 			xalign: 0
 		});
