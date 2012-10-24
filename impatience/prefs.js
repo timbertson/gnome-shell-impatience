@@ -14,29 +14,24 @@ function buildPrefsWidget() {
 	});
 
 	(function() {
-		let hbox = new Gtk.Box({
-			orientation: Gtk.Orientation.HORIZONTAL,
-			spacing: 20
-		});
-
 		let label = new Gtk.Label({
-			label: "Speed scaling\n<small>(1 = normal, 0.5 = twice as fast)</small>",
-			use_markup: true,
+			label: "Speed scaling (1 = normal, 0.5 = twice as fast, 0.1 = ten times faster)",
+			use_markup: false,
+			xalign: 0
 		});
 		let adjustment = new Gtk.Adjustment({
-			lower: 0.05,
-			upper: 2,
-			step_increment: 0.05
+			lower: 0.001,
+			upper: 1,
+			step_increment: 0.001
 		});
 		let scale = new Gtk.HScale({
-			digits:2,
+			digits:3,
 			adjustment: adjustment,
 			value_pos: Gtk.PositionType.RIGHT
 		});
 
-		hbox.add(label);
-		hbox.pack_end(scale, true, true, 0);
-		frame.add(hbox);
+		frame.add(label);
+		frame.pack_end(scale, true, true, 0);
 
 		var pref = config.SPEED;
 		scale.set_value(pref.get());
