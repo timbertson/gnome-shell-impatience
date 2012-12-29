@@ -7,7 +7,6 @@
 	<description>
 Speed up builtin gnome-shell animations.
 	</description>
-	<homepage>http://gfxmonk.github.com/shellshape/</homepage>
 	<group>
 		<command name="run">
 			<runner interface="http://gfxmonk.net/dist/0install/zeroinstall-plugin-manager.xml">
@@ -48,6 +47,10 @@ Speed up builtin gnome-shell animations.
 		<implementation id="sha1new=78f333fddbc392633cc1856bfdc7334d1428166d" released="2012-05-06" version="0.4">
 			<manifest-digest sha256="851f0c2a3a7a624451ecfa072da568ea052f4e7ceedce42b7a228ff2dbd7cf75"/>
 			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-impatience/gnome-shell-impatience-0.4.tgz" size="2338"/>
+		</implementation>
+		<implementation id="sha1new=7f9b00671675795bfffeb8a99d87df5f2bc8e3ec" released="2012-12-29" version="0.4.1">
+			<manifest-digest sha256="ab60737eb157da8fc343c4e8b52767b8ae8848c9d2bfc820b1993ef66866f1a1"/>
+			<archive href="http://gfxmonk.net/dist/0install/gnome-shell-impatience/gnome-shell-impatience-0.4.1.tgz" size="2348"/>
 		</implementation>
 	</group>
 </interface>
