@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type='text/xsl' href='interface.xsl'?>
+<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+	<name>gnome-shell-impatience</name>
+	<summary>speed up gnome-shell animations</summary>
+	<publish xmlns="http://gfxmonk.net/dist/0install" mode="default"/>
+	<description>
+Speed up builtin gnome-shell animations.
+	</description>
+	<feed-for interface="http://gfxmonk.net/dist/0install/gnome-shell-impatience.xml"/>
+	<group>
+		<command name="run">
+			<runner interface="http://gfxmonk.net/dist/0install/zeroinstall-plugin-manager.xml">
+				<arg>http://gfxmonk.net/dist/0install/gnome-shell.xml</arg>
+				<arg>--plugin-command</arg>
+				<arg>run</arg>
+			</runner>
+			<requires interface="http://gfxmonk.net/dist/0install/gnome-shell.xml">
+				<version not-before="3.4"/>
+			</requires>
+		</command>
+		<environment insert="xdg/data" mode="prepend" name="XDG_DATA_DIRS"/>
+		<implementation version="{version}">
+			<manifest-digest/>
+			<archive href="{archive}"/>
+		</implementation>
+	</group>
+</interface>
