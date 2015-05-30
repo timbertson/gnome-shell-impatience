@@ -8,10 +8,14 @@ function get_local_gsettings(schema_path) {
 	const GioSSS = Gio.SettingsSchemaSource;
 
 	let schemaDir = Extension.dir.get_child('schemas');
-	let schemaSource = GioSSS.new_from_directory(
-		schemaDir.get_path(),
-		GioSSS.get_default(),
-		false);
+
+	let schemaSource = GioSSS.get_default();
+	if (schemaDir.query_exists(null)) {
+		schemaSource = GioSSS.new_from_directory(
+			schemaDir.get_path(),
+			schemaSource,
+			false);
+	}
 
 	let schemaObj = schemaSource.lookup(schema_path, true);
 	if (!schemaObj) {
