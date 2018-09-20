@@ -8,7 +8,6 @@ const Settings = Extension.imports.settings;
 
 function LOG(m){
 	global.log("[impatience] " + m);
-	log("[impatience] " + m);
 };
 function Ext() {
 	this._init.apply(this, arguments);
