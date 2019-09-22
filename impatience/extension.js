@@ -17,7 +17,7 @@ var noop = function() {};
 Ext.prototype = {};
 Ext.prototype._init = function() {
 	this.enabled = false;
-	this.original_speed = St.get_slow_down_factor();
+	this.original_speed = St.Settings.get().slow_down_factor;
 	this.modified_speed = DEFAULT_SPEED;
 	this.unbind = noop;
 };
@@ -39,7 +39,7 @@ Ext.prototype.enable = function() {
 Ext.prototype.disable = function() {
 	this.enabled = false;
 	this.unbind();
-	St.set_slow_down_factor(this.original_speed);
+	St.Settings.get().slow_down_factor = this.original_speed;
 };
 
 Ext.prototype.set_speed = function(new_speed) {
@@ -51,7 +51,7 @@ Ext.prototype.set_speed = function(new_speed) {
 		this.modified_speed = new_speed;
 	}
 	LOG("setting new speed: " + this.modified_speed);
-	St.set_slow_down_factor(this.modified_speed);
+	St.Settings.get().slow_down_factor = this.modified_speed;
 };
 
 function init() {
