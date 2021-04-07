@@ -31,7 +31,8 @@ function buildPrefsWidget() {
 			upper: 2,
 			step_increment: 0.05
 		});
-		let scale = new Gtk.HScale({
+		let scale = new Gtk.Scale({
+			orientation: Gtk.Orientation.HORIZONTAL,
 			digits:2,
 			adjustment: adjustment,
 			value_pos: Gtk.PositionType.RIGHT
