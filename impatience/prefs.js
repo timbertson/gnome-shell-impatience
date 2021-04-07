@@ -10,7 +10,10 @@ function buildPrefsWidget() {
 	let config = new Settings.Prefs();
 	let frame = new Gtk.Box({
 		orientation: Gtk.Orientation.VERTICAL,
-		border_width: 10
+		'margin-top': 20,
+		'margin-bottom': 20,
+		'margin-start': 20,
+		'margin-end': 20
 	});
 
 	(function() {
