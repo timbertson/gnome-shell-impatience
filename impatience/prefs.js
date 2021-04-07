@@ -35,15 +35,19 @@ function buildPrefsWidget() {
 			orientation: Gtk.Orientation.HORIZONTAL,
 			digits:2,
 			adjustment: adjustment,
+			hexpand: true,
 			value_pos: Gtk.PositionType.RIGHT
 		});
 
 		hbox.append(label);
-		hbox.pack_end(scale, true, true, 0);
+		hbox.append(scale);
 		frame.append(hbox);
 
 		var pref = config.SPEED;
 		scale.set_value(pref.get());
+		[0.25, 0.5, 1.0, 2.0].forEach(
+			mark => scale.add_mark(mark, Gtk.PositionType.TOP, "<small>" + mark + "</small>")
+		);
 		scale.connect('value-changed', function(sw) {
 			var oldval = pref.get();
 			var newval = sw.get_value();
@@ -53,6 +57,6 @@ function buildPrefsWidget() {
 		});
 	})();
 
-	frame.show_all();
+	frame.show();
 	return frame;
 }
