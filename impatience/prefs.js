@@ -38,9 +38,9 @@ function buildPrefsWidget() {
 			value_pos: Gtk.PositionType.RIGHT
 		});
 
-		hbox.add(label);
+		hbox.append(label);
 		hbox.pack_end(scale, true, true, 0);
-		frame.add(hbox);
+		frame.append(hbox);
 
 		var pref = config.SPEED;
 		scale.set_value(pref.get());
