@@ -10,7 +10,10 @@ function buildPrefsWidget() {
 	let config = new Settings.Prefs();
 	let frame = new Gtk.Box({
 		orientation: Gtk.Orientation.VERTICAL,
-		border_width: 10
+		'margin-top': 20,
+		'margin-bottom': 20,
+		'margin-start': 20,
+		'margin-end': 20
 	});
 
 	(function() {
@@ -28,18 +31,23 @@ function buildPrefsWidget() {
 			upper: 2,
 			step_increment: 0.05
 		});
-		let scale = new Gtk.HScale({
+		let scale = new Gtk.Scale({
+			orientation: Gtk.Orientation.HORIZONTAL,
 			digits:2,
 			adjustment: adjustment,
+			hexpand: true,
 			value_pos: Gtk.PositionType.RIGHT
 		});
 
-		hbox.add(label);
-		hbox.pack_end(scale, true, true, 0);
-		frame.add(hbox);
+		hbox.append(label);
+		hbox.append(scale);
+		frame.append(hbox);
 
 		var pref = config.SPEED;
 		scale.set_value(pref.get());
+		[0.25, 0.5, 1.0, 2.0].forEach(
+			mark => scale.add_mark(mark, Gtk.PositionType.TOP, "<small>" + mark + "</small>")
+		);
 		scale.connect('value-changed', function(sw) {
 			var oldval = pref.get();
 			var newval = sw.get_value();
@@ -49,6 +57,6 @@ function buildPrefsWidget() {
 		});
 	})();
 
-	frame.show_all();
+	frame.show();
 	return frame;
 }
