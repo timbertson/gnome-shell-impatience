@@ -7,7 +7,7 @@ schemas: phony
 	cd impatience/schemas && glib-compile-schemas .
 
 zip: phony
-	rm impatience@gfxmonk.net.zip
+	rm -f impatience@gfxmonk.net.zip
 	cd impatience && zip -r ../impatience@gfxmonk.net.zip *
 
 .PHONY: phony
