@@ -1,6 +1,5 @@
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
-const Lang = imports.lang;
 const DEFAULT_SPEED = 0.75;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Extension = ExtensionUtils.getCurrentExtension();
@@ -23,15 +22,16 @@ Ext.prototype._init = function() {
 };
 
 Ext.prototype.enable = function() {
+	var self = this;
 	this.enabled = true;
 	var pref = (new Settings.Prefs()).SPEED;
 	LOG("enabled");
-	var binding = pref.changed(Lang.bind(this, function() {
-		this.set_speed(pref.get());
-	}));
+	var binding = pref.changed(function() => {
+		self.set_speed(pref.get());
+	});
 	this.unbind = function() {
 		pref.disconnect(binding);
-		this.unbind = noop;
+		self.unbind = noop;
 	};
 	this.set_speed(pref.get());
 };
