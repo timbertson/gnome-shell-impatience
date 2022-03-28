@@ -26,7 +26,7 @@ Ext.prototype.enable = function() {
 	this.enabled = true;
 	var pref = (new Settings.Prefs()).SPEED;
 	LOG("enabled");
-	var binding = pref.changed(function() => {
+	var binding = pref.changed(function() {
 		self.set_speed(pref.get());
 	});
 	this.unbind = function() {
