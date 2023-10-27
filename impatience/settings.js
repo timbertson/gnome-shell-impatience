@@ -1,12 +1,5 @@
-const Gio = imports.gi.Gio;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Extension = ExtensionUtils.getCurrentExtension();
-
-const SCHEMA_PATH = 'org.gnome.shell.extensions.net.gfxmonk.impatience';
-
-function Prefs() {
-	var self = this;
-	var settings = this.settings = ExtensionUtils.getSettings(SCHEMA_PATH);
+export function Prefs(extension) {
+	var settings = this.settings = extension.getSettings();
 	this.SPEED = {
 		key: 'speed-factor',
 		get: function() { return settings.get_double(this.key); },
