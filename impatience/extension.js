@@ -9,7 +9,7 @@ function LOG(m){
 
 var noop = function() {};
 
-export default class Ext extends Extension {
+export default class Impatience extends Extension {
 	constructor(metadata) {
 		super(metadata);
 		this.enabled = false;

@@ -3,7 +3,7 @@ import Gtk from 'gi://Gtk';
 import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 import * as Settings from './settings.js';
 
-export default class ExtPrefs extends ExtensionPreferences {
+export default class ImpatiencePrefs extends ExtensionPreferences {
 	getPreferencesWidget() {
 		let config = new Settings.Prefs(this);
 		let frame = new Gtk.Box({
