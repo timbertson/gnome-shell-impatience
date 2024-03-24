@@ -3,6 +3,9 @@
   "name": "Impatience",
   "description": "Speed up the gnome-shell animation speed",
   "url": "http://gfxmonk.net/dist/0install/gnome-shell-impatience.xml",
-  "shell-version": [ "45" ],
+  "shell-version": [
+    "45",
+    "46"
+  ],
   "settings-schema": "org.gnome.shell.extensions.net.gfxmonk.impatience"
 }
